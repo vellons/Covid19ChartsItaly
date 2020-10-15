@@ -1,51 +1,17 @@
 <template>
-  <div class="hello">
-    <apexchart v-if="!chartLoading" width="500" type="area" :options="chartOptions" :series="chartSeries"></apexchart>
+  <div class="home-container">
+    <chart-tamponi class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100" :height="boxHeight"/>
   </div>
 </template>
 
 <script>
+  import ChartTamponi from "@/components/charts/ChartTamponi";
   export default {
-    name: 'HelloWorld',
-    data: () => {
-      return {
-        chartLoading: true,
-        chartOptions: {
-          chart: {
-            id: 'vuechart-example'
-          },
-          xaxis: {
-            type: 'datetime',
-            categories: []
-          },
-        },
-        chartSeries: [{
-          name: 'series-1',
-          data: []
-        }]
-      }
-    },
-    mounted() {
-      this.downloadData()
-    },
-    methods: {
-      downloadData: function () {
-        this.chartLoading = true
-        let url = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json'
-        this.$http.get(url).then((response) => {
-          if (response.status === 200 && response.body && response.body.length > 1) {
-            response.body.forEach((item => {
-              this.chartSeries[0].data.push(item.tamponi)
-              this.chartOptions.xaxis.categories.push(item.data)
-              console.log(item)
-            }))
-            this.chartLoading = false
-          }
-        })
-      }
-    }
+    name: "Home",
+    components: {ChartTamponi},
+    data: () => ({
+      loading: true,
+      boxHeight: "350px"
+    })
   }
 </script>
-
-<style lang="scss">
-</style>

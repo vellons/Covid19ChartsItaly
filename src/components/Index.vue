@@ -2,26 +2,26 @@
   <div id="vue-js-index-container">
     <md-app md-waterfall md-mode="fixed" :md-theme="userTheme">
       <md-app-toolbar class="md-primary" md-elevation="5">
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
+        <md-button class="md-icon-button" @click="toggleMenuExtension" v-if="!menuMaxExtension">
           <md-icon>menu</md-icon>
         </md-button>
         <router-link class="router-link" to="/home">
           <img class="bar-logo" src="../assets/logo.png" alt="Logo"/>
-          <span class="md-title">Covid Charts ITA</span>
+          <span class="md-title">Grafici Covid-19 ITA</span>
         </router-link>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini">
+      <md-app-drawer :md-active.sync="menuMaxExtension" md-persistent="mini">
         <md-toolbar class="md-transparent" md-elevation="3">
-          <span>Navigation</span>
+          <span>Menu</span>
           <div class="md-toolbar-section-end">
-            <md-button class="md-icon-button md-dense" @click="toggleMenu">
+            <md-button class="md-icon-button md-dense" @click="toggleMenuExtension">
               <md-icon>keyboard_arrow_left</md-icon>
             </md-button>
           </div>
         </md-toolbar>
 
-        <md-list>
+        <md-list v-if="showMenuItem">
           <div v-for="tab in menuTab" :key="tab.title">
             <router-link :to="tab.link">
               <md-list-item :class="{'active': $route.fullPath.includes(tab.link)}">
@@ -34,7 +34,7 @@
       </md-app-drawer>
 
       <md-app-content>
-        <router-view/>
+        <router-view @themeChanged="themeChanged"/>
       </md-app-content>
     </md-app>
   </div>
@@ -44,33 +44,37 @@
   export default {
     name: 'Index',
     data: () => ({
-      menuVisible: false,
+      menuMaxExtension: false,
+      showMenuItem: false,
       userTheme: "default",
       menuTab: [
         {
-          icon: 'home',
-          title: 'Home',
-          link: '/home',
+          icon: "home",
+          title: "Home",
+          link: "/home",
         },
         {
-          icon: 'info',
-          title: 'Info',
-          link: '/info',
+          icon: "info",
+          title: "Info",
+          link: "/info",
         },
       ]
     }),
     mounted() {
-      if (localStorage.userTheme === "dark") {
-        this.userTheme = "dark";
-      }
-      if (this.$route.fullPath === '/') {
-        this.$router.replace('/home').catch(() => {
+      this.themeChanged()
+      if (this.$route.fullPath === "/") {
+        this.$router.replace("/home").catch(() => {
         });
       }
+      this.showMenuItem = true
     },
     methods: {
-      toggleMenu() {
-        this.menuVisible = !this.menuVisible;
+      toggleMenuExtension() {
+        this.menuMaxExtension = !this.menuMaxExtension
+      },
+      themeChanged: function () {
+        if (localStorage.userTheme === "dark") this.userTheme = "dark"
+        else this.userTheme = "default"
       }
     }
   }

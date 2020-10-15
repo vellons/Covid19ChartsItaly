@@ -1,4 +1,6 @@
-# covid_charts_ita
+# Grafici Covid-19 ITA
+
+Where does all the data come from? [github.com/pcm-dpc/COVID-19](https://github.com/pcm-dpc/COVID-19)
 
 ## Project setup
 ```
