@@ -1,6 +1,6 @@
 <template>
-  <div class="chart-tamponi">
-    <BoxContainer :height="height" :title="'Totale tamponi ' + total" :centerContent="true" :loading="chartLoading">
+  <div class="chart-percent-positivi-tamponi">
+    <BoxContainer :height="height" :title="'Percentuale positivi al tampone'" :centerContent="true" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -11,7 +11,7 @@
   import {chartMixins} from "@/mixins/ChartMixins";
 
   export default {
-    name: "chart-tamponi",
+    name: "chart-percent-positivi-tamponi",
     components: {BoxContainer},
     mixins: [chartMixins],
     props: {
@@ -22,18 +22,19 @@
       chartOptions: {},
       chartSeries: [
         {
-          name: "Tamponi",
-          data: []
-        },
-        {
-          name: "Positivi",
+          name: "Positivi/Tamponi*100",
           data: []
         }
       ],
       total: ""
     }),
     mounted() {
-      this.chartOptions = this.getChartAreaOptions( "apex-chart-tamponi")
+      this.chartOptions = this.getChartAreaOptions( "apex-chart-percent-positivi-tamponi")
+      this.chartOptions.tooltip.y = {
+        formatter: function (value) {
+          return value + "%"
+        }
+      }
       this.downloadData()
     },
     methods: {
@@ -45,8 +46,9 @@
             this.total = response.body[response.body.length - 1].tamponi
             let yesterday = 0
             response.body.forEach((item => {
-              this.chartSeries[0].data.push(item.tamponi - yesterday)
-              this.chartSeries[1].data.push(item.nuovi_positivi)
+              let tamponi = item.tamponi - yesterday
+              let positivi = item.nuovi_positivi
+              this.chartSeries[0].data.push((positivi/tamponi*100).toFixed(2))
               this.chartOptions.xaxis.categories.push(item.data)
               yesterday = item.tamponi
             }))
