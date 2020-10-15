@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <apexchart width="500" type="bar" :options="options" :series="series"></apexchart>
+    <apexchart v-if="!chartLoading" width="500" type="area" :options="chartOptions" :series="chartSeries"></apexchart>
   </div>
 </template>
 
@@ -9,18 +9,39 @@ export default {
   name: 'HelloWorld',
   data: () => {
     return {
-      options: {
+      chartLoading: true,
+      chartOptions: {
         chart: {
           id: 'vuechart-example'
         },
         xaxis: {
-          categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-        }
+          type: 'datetime',
+          categories: []
+        },
       },
-      series: [{
+      chartSeries: [{
         name: 'series-1',
-        data: [30, 40, 45, 50, 49, 60, 70, 91]
+        data: []
       }]
+    }
+  },
+  mounted() {
+    this.downloadData()
+  },
+  methods: {
+    downloadData: function () {
+      this.chartLoading = true
+      let url = 'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json'
+      this.$http.get(url).then((response) => {
+        if (response.status === 200 && response.body && response.body.length > 1) {
+          response.body.forEach((item => {
+            this.chartSeries[0].data.push(item.tamponi)
+            this.chartOptions.xaxis.categories.push(item.data)
+            console.log(item)
+          }))
+          this.chartLoading = false
+        }
+      })
     }
   }
 }
