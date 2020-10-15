@@ -15,7 +15,7 @@
     components: {BoxContainer},
     mixins: [chartMixins],
     props: {
-      height: {default: '100%'}
+      height: {default: "100%"}
     },
     data: () => ({
       chartLoading: true,
@@ -26,7 +26,7 @@
           data: []
         },
         {
-          name: "Positivi",
+          name: "Nuovi positivi",
           data: []
         }
       ],
@@ -34,6 +34,7 @@
     }),
     mounted() {
       this.chartOptions = this.getChartAreaOptions( "apex-chart-tamponi")
+      this.chartOptions.colors = ["#228b22", "#ffa547"]
       this.downloadData()
     },
     methods: {

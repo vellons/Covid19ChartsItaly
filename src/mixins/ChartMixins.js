@@ -46,6 +46,16 @@ export const chartMixins = {
           type: "datetime",
           categories: [] // Categories will be added here
         },
+        markers: {
+          hover: {
+            sizeOffset: 5
+          }
+        },
+        stroke: {
+          show: true,
+          curve: 'smooth',
+          width: 2.2,
+        },
         dataLabels: {
           enabled: false
         },
