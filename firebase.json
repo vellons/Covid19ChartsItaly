@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "italia-covid19",
     "public": "dist",
     "ignore": [
       "firebase.json",
