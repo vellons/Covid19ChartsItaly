@@ -1,8 +1,14 @@
 <template>
   <div class="home-container md-layout">
-    <chart-andamento class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100" :height="boxHeight"/>
-    <chart-tamponi class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100" :height="boxHeight"/>
-    <chart-percent-positivi-tamponi class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100" :height="boxHeight"/>
+    <chart-andamento
+      class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-tamponi
+      class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-percent-positivi-tamponi
+      class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
   </div>
 </template>
 
@@ -16,7 +22,8 @@
     components: {ChartAndamento, ChartTamponi, ChartPercentPositiviTamponi},
     data: () => ({
       loading: true,
-      boxHeight: "350px"
+      boxHeight: "100%",
+      boxMinHeight: "300px"
     })
   }
 </script>

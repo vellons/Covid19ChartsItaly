@@ -1,6 +1,6 @@
 <template>
   <div class="chart-andamento">
-    <BoxContainer :height="height" :title="'Andamento italiano'" :centerContent="true" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Andamento italiano'" :centerContent="true" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -15,7 +15,8 @@
     components: {BoxContainer},
     mixins: [chartMixins],
     props: {
-      height: {default: "100%"}
+      height: {default: "100%"},
+      minHeight: {default: "300px"}
     },
     data: () => ({
       chartLoading: true,
@@ -36,7 +37,7 @@
       ],
     }),
     mounted() {
-      this.chartOptions = this.getChartAreaOptions( "apex-chart-andamento")
+      this.chartOptions = this.getChartAreaOptions("apex-chart-andamento")
       this.chartOptions.colors = ["#ffa547", "#228b22", "#e60000"]
       this.downloadData()
     },

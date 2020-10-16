@@ -58,12 +58,12 @@
 
       .logo {
         height: 200px;
-        transform: rotate(50deg);
+        transform: rotate(60deg);
         transition: transform .3s;
 
         &:hover {
           transform: rotate(0deg);
-          transition: transform 1s;
+          transition: transform 1.3s;
         }
       }
     }

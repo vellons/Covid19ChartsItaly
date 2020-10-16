@@ -1,6 +1,7 @@
 <template>
   <div class="chart-percent-positivi-tamponi">
-    <BoxContainer :height="height" :title="'Percentuale nuovi positivi al tampone'" :centerContent="true" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Percentuale nuovi positivi al tampone'" :centerContent="true"
+                  :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -15,7 +16,8 @@
     components: {BoxContainer},
     mixins: [chartMixins],
     props: {
-      height: {default: "100%"}
+      height: {default: "100%"},
+      minHeight: {default: "300px"}
     },
     data: () => ({
       chartLoading: true,
@@ -29,7 +31,7 @@
       total: ""
     }),
     mounted() {
-      this.chartOptions = this.getChartAreaOptions( "apex-chart-percent-positivi-tamponi")
+      this.chartOptions = this.getChartAreaOptions("apex-chart-percent-positivi-tamponi")
       this.chartOptions.colors = ["#ffa547"]
       this.chartOptions.tooltip.y = {
         formatter: function (value) {
@@ -49,7 +51,7 @@
             response.body.forEach((item => {
               let tamponi = item.tamponi - yesterday
               let positivi = item.nuovi_positivi
-              this.chartSeries[0].data.push((positivi/tamponi*100).toFixed(2))
+              this.chartSeries[0].data.push((positivi / tamponi * 100).toFixed(2))
               this.chartOptions.xaxis.categories.push(item.data)
               yesterday = item.tamponi
             }))

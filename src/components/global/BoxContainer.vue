@@ -1,7 +1,7 @@
 <template>
-  <div class="my-global-box-container">
+  <div class="global-box-container">
     <div class="content-container" :style="{'height' : height}">
-      <md-content :md-theme="theme" class="md-elevation-10 content-area">
+      <md-content :md-theme="theme" class="md-elevation-10 content-area" :style="{'min-height' : minHeight}">
         <div v-if="title" class="box-title">
           <span>{{title}}</span>
         </div>
@@ -22,6 +22,9 @@
     props: {
       height: {
         default: '100%'
+      },
+      minHeight: {
+        default: '100px'
       },
       loading: {
         default: false
@@ -48,7 +51,7 @@
       loading: function () {
         this.showSpinnerLoading = this.loading;
         if (!this.showSpinnerLoading) {
-          setTimeout(() => (this.showContent = true), 100);
+          setTimeout(() => (this.showContent = true), 25);
         } else {
           this.showContent = false;
         }
@@ -58,11 +61,9 @@
 </script>
 
 <style lang="scss">
-  .my-global-box-container {
+  .global-box-container {
     .content-container {
       padding: 8px;
-      min-height: 100px;
-      min-width: 100px;
 
       .content-area {
         box-sizing: border-box;
