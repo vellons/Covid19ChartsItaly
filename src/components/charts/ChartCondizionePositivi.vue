@@ -1,6 +1,6 @@
 <template>
-  <div class="chart-tamponi">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Totale tamponi: ' + total" :loading="chartLoading">
+  <div class="chart-condizione-positivi">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Condizione positivi'" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -11,7 +11,7 @@
   import {chartMixins} from "@/mixins/ChartMixins";
 
   export default {
-    name: "chart-tamponi",
+    name: "chart-condizione-positivi",
     components: {BoxContainer},
     mixins: [chartMixins],
     props: {
@@ -23,19 +23,22 @@
       chartOptions: {},
       chartSeries: [
         {
-          name: "Tamponi",
+          name: "Isolamento domiciliare",
           data: []
         },
         {
-          name: "Nuovi positivi",
+          name: "Ricoverati",
+          data: []
+        },
+        {
+          name: "Terapia intensiva",
           data: []
         }
       ],
-      total: ""
     }),
     mounted() {
-      this.chartOptions = this.getChartAreaOptions("apex-chart-tamponi")
-      this.chartOptions.colors = ["#00e2e6", "#ffa547"]
+      this.chartOptions = this.getChartAreaOptions("apex-chart-condizione-positivi")
+      this.chartOptions.colors = ["#0040ff", "#ffd500", "#ff2600"]
       this.downloadData()
     },
     methods: {
@@ -44,13 +47,11 @@
         let url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
         this.$http.get(url).then((response) => {
           if (response.status === 200 && response.body && response.body.length > 1) {
-            this.total = response.body[response.body.length - 1].tamponi
-            let yesterday = 0
             response.body.forEach((item => {
-              this.chartSeries[0].data.push(item.tamponi - yesterday)
-              this.chartSeries[1].data.push(item.nuovi_positivi)
+              this.chartSeries[0].data.push(item.isolamento_domiciliare)
+              this.chartSeries[1].data.push(item.ricoverati_con_sintomi)
+              this.chartSeries[2].data.push(item.terapia_intensiva)
               this.chartOptions.xaxis.categories.push(item.data)
-              yesterday = item.tamponi
             }))
             this.chartLoading = false
           }

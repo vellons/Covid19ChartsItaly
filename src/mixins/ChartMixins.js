@@ -35,7 +35,16 @@ export const chartMixins = {
           locales: this.getChartLocales(),
           defaultLocale: this.getChartLang(),
           toolbar: {
-            show: false
+            show: true,
+            tools: {
+              download: false,
+              selection: false,
+              zoom: true,
+              zoomin: false,
+              zoomout: false,
+              pan: false,
+              reset: true
+            },
           },
           width: "100%"
         },
