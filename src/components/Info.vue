@@ -3,7 +3,7 @@
     <div class="middle-center">
       <img class="logo" src="../assets/logo.png" alt="Grafici Covid-19 ITA">
       <div class="md-title">Grafici Covid-19 ITA</div>
-      <div class="md-subheading"><b>Versione:</b> 0.1.2 - <span @click="setAllCommitSha">{{commitSha}}</span>
+      <div class="md-subheading"><b>Versione:</b> 1.0.1 - <span @click="setAllCommitSha">{{commitSha}}</span>
       </div>
       <div class="md-subheading"><b>Ultimo aggiornamento dati:</b> {{lastUpdate}}</div>
       <div>
