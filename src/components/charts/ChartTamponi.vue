@@ -1,6 +1,6 @@
 <template>
   <div class="chart-tamponi">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Totale tamponi ' + total" :centerContent="true" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Totale tamponi: ' + total" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>

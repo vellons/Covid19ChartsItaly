@@ -23,7 +23,7 @@
     data: () => ({
       loading: true,
       boxHeight: "100%",
-      boxMinHeight: "300px"
+      boxMinHeight: "275px"
     })
   }
 </script>

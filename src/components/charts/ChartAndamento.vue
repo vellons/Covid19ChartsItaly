@@ -1,6 +1,6 @@
 <template>
   <div class="chart-andamento">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Andamento italiano'" :centerContent="true" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Andamento italiano'" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>

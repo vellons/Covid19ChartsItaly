@@ -1,6 +1,6 @@
 <template>
   <div class="chart-percent-positivi-tamponi">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Percentuale nuovi positivi al tampone'" :centerContent="true"
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Percentuale nuovi positivi al tampone'"
                   :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>

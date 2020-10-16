@@ -9,7 +9,7 @@
       <div>
         <md-switch v-model="themeSwitch" @change="changeTheme">Tema chiaro/scuro</md-switch>
       </div>
-      <p><a class="md-accent" target="_blank" href="https://github.com/vellons">Dashboard GitHub code</a></p>
+      <p><a class="md-accent" target="_blank" href="https://github.com/vellons/Covid19ChartsItaly">Source code</a></p>
       <p><a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19">Fonte dati</a></p>
     </div>
   </div>

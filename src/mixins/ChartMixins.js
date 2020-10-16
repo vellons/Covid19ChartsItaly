@@ -36,7 +36,8 @@ export const chartMixins = {
           defaultLocale: this.getChartLang(),
           toolbar: {
             show: false
-          }
+          },
+          width: "100%"
         },
         theme: {
           mode: this.getChartTheme(),
