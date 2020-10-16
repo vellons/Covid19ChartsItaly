@@ -3,10 +3,6 @@
     <BoxContainer :height="height" :minHeight="minHeight" :title="'Totale tamponi ' + total" :centerContent="true" :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
-
-    <BoxContainer :height="height" :title="'Totale tamponi ' + total" :centerContent="true" :loading="chartLoading">
-      ciao
-    </BoxContainer>
   </div>
 </template>
 

@@ -1,6 +1,5 @@
 export const chartMixins = {
-  data: () => ({
-  }),
+  data: () => ({}),
   methods: {
     getChartLang: function () {
       return "it"
