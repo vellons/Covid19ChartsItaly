@@ -19,7 +19,7 @@ export const chartMixins = {
           toolbar: {
             download: "Download SVG",
             selection: "Seleziona",
-            selectionZoom: "Seleziona Zoom",
+            selectionZoom: "Seleziona un area per zoommare",
             zoomIn: "Zoom dentro",
             zoomOut: "Zoom fuori",
             pan: "Muoviti",

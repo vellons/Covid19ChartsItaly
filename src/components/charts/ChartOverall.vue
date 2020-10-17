@@ -1,16 +1,27 @@
 <template>
   <div class="chart-overall">
     <div class="overall-container">
-      <div v-for="card in covidCards" class="covid-card md-elevation-5" :key="card.title">
-        <div class="left">
-          <div class="title">{{card.title}}</div>
-          <div class="explained">
-            <div class="number">{{card.number}}</div>
-            <div class="difference">{{card.difference}}</div>
+      <div class="md-layout">
+        <div v-for="card in covidCards" :key="card.title"
+             class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100 card-container">
+          <div class="covid-card md-elevation-5">
+            <div class="left">
+              <div class="top">
+                <div class="title">{{card.title}}</div>
+                <div class="info">
+                  <md-icon class="md-icon info-icon">info</md-icon>
+                  <md-tooltip md-direction="top">{{card.tooltip}}</md-tooltip>
+                </div>
+              </div>
+              <div class="explained">
+                <div class="number">{{card.number}}</div>
+                <div class="difference">{{card.difference}}</div>
+              </div>
+            </div>
+            <div class="right">
+              <div class="percentage">{{card.percentage}}</div>
+            </div>
           </div>
-        </div>
-        <div class="right">
-          <div class="percentage">{{card.percentage}}</div>
         </div>
       </div>
     </div>
@@ -41,7 +52,6 @@
             let meno2 = response.body[response.body.length - 3]
             let meno1 = response.body[response.body.length - 2]
             let meno0 = response.body[response.body.length - 1]
-            console.log(meno1, meno0)
             this.covidCards = [
               {
                 "title": "Nuovi positivi",
@@ -81,7 +91,7 @@
 
 <style lang="scss">
   .chart-overall {
-    padding: 8px;
+    //padding: 8px;
 
     .overall-container {
       height: 100%;
@@ -90,50 +100,71 @@
       //border-radius: 10px;
       //padding: 10px;
 
-      .covid-card {
-        border: 1px solid #bbbbbb;
-        border-radius: 10px;
-        padding: 5px 15px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 80px;
-        width: 250px;
+      .card-container {
+        padding: 8px;
 
-        .left {
+        .covid-card {
+          border: 1px solid #bbbbbb;
+          border-radius: 10px;
+          padding: 5px 15px;
           display: flex;
-          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+          height: 90px;
+          min-width: 180px;
 
-          .title {
-            font-weight: bold;
-            font-size: 120%;
-            margin-bottom: 5px;
-          }
-
-          .explained {
+          .left {
             display: flex;
-            align-items: center;
+            flex-direction: column;
 
-            .number {
-              margin-right: 5px;
-              font-weight: bold;
+            .top {
+              display: flex;
+              align-items: center;
+              margin-bottom: 5px;
+
+              .title {
+                font-weight: bold;
+                font-size: 120%;
+              }
+
+              .info {
+                margin-left: 3px;
+
+                .info-icon {
+                  width: 18px;
+                  min-width: 18px;
+                  height: 18px;
+                  font-size: 16px !important;
+                }
+              }
             }
 
-            .difference {
-              &::before {
-                content: "(";
+            .explained {
+              display: flex;
+              align-items: center;
+
+              .number {
+                margin-right: 5px;
+                font-weight: bold;
               }
-              &::after {
-                content: ")";
+
+              .difference {
+                &::before {
+                  content: "(";
+                }
+
+                &::after {
+                  content: ")";
+                }
               }
             }
           }
-        }
 
-        .right {
-          .percentage {
-            font-weight: bold;
-            font-size: 150%;
+          .right {
+            .percentage {
+              font-weight: bold;
+              font-size: 150%;
+            }
           }
         }
       }
