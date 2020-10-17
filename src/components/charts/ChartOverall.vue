@@ -56,7 +56,7 @@
             this.covidCards = [
               {
                 "title": "Nuovi positivi",
-                "number": meno0.nuovi_positivi,
+                "number": meno0.nuovi_positivi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.nuovi_positivi - meno1.nuovi_positivi),
                 "percentage": this.toStringPlus((meno0.nuovi_positivi - meno1.nuovi_positivi) / meno1.nuovi_positivi * 100, 1),
                 "tooltip": "Nuovi positivi al Covid-19 oggi. Ieri erano " + (meno1.nuovi_positivi)
@@ -66,53 +66,53 @@
                 "number": (meno0.nuovi_positivi / (meno0.tamponi - meno1.tamponi) * 100).toFixed(2) + "%",
                 "difference": "Ieri: " + (meno1.nuovi_positivi / (meno1.tamponi - meno2.tamponi) * 100).toFixed(2) + "%",
                 "percentage": (meno0.nuovi_positivi / (meno0.tamponi - meno1.tamponi) * 100).toFixed(2),
-                "tooltip": "Percentuale di positivi al test oggi = NuoviPositiviOggi/TamponiOggi*100 --> " + meno0.nuovi_positivi +  "/" + (meno0.tamponi - meno1.tamponi) + "*100"
+                "tooltip": "Percentuale di positivi al test oggi = NuoviPositiviOggi/TamponiOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.tamponi - meno1.tamponi) + "*100"
               },
               {
                 "title": "Decessi",
-                "number": meno0.deceduti - meno1.deceduti,
+                "number": (meno0.deceduti - meno1.deceduti).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)),
                 "percentage": this.toStringPlus(((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)) / (meno1.deceduti - meno2.deceduti) * 100, 1),
                 "tooltip": "Decessi per Covid-19 avvenuti oggi. Ieri erano " + (meno1.deceduti - meno2.deceduti)
               },
               {
                 "title": "Terapia intensiva",
-                "number": meno0.terapia_intensiva - meno1.terapia_intensiva,
+                "number": (meno0.terapia_intensiva - meno1.terapia_intensiva).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)),
                 "percentage": this.toStringPlus(((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)) / (meno1.terapia_intensiva - meno2.terapia_intensiva) * 100, 1),
                 "tooltip": "Persone che sono state ricoverate oggi in terapia intensiva. Ieri erano " + (meno1.terapia_intensiva - meno2.terapia_intensiva)
               },
               {
                 "title": "Ricoveri",
-                "number": meno0.totale_ospedalizzati - meno1.totale_ospedalizzati,
+                "number": (meno0.totale_ospedalizzati - meno1.totale_ospedalizzati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)),
                 "percentage": this.toStringPlus(((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)) / (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) * 100, 1),
                 "tooltip": "Persone che sono state ricoverate oggi con sintomi. Ieri erano " + (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) + ". (Comprese terapie intensive)"
               },
               {
                 "title": "Totale casi",
-                "number": meno0.totale_casi,
+                "number": meno0.totale_casi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.nuovi_positivi),
                 "percentage": this.toStringPlus((meno0.totale_casi - meno1.totale_casi) / (meno1.totale_casi) * 100, 1),
                 "tooltip": "Totale delle persone che sono risultate positive al Covid-19. Ieri il totale calcolato era " + meno1.totale_casi
               },
               {
                 "title": "Attuali positivi",
-                "number": meno0.totale_positivi,
+                "number": meno0.totale_positivi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.totale_positivi - meno1.totale_positivi),
                 "percentage": this.toStringPlus((meno0.totale_positivi - meno1.totale_positivi) / (meno1.totale_positivi) * 100, 1),
                 "tooltip": "Totale delle persone attualmente positive. Ieri erano " + meno1.totale_positivi
               },
               {
                 "title": "Dimessi / Guariti",
-                "number": meno0.dimessi_guariti,
+                "number": meno0.dimessi_guariti.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.dimessi_guariti - meno1.dimessi_guariti),
                 "percentage": this.toStringPlus((meno0.dimessi_guariti - meno1.dimessi_guariti) / (meno1.dimessi_guariti) * 100, 1),
                 "tooltip": "Totale delle persone che sono state dimesse o sono guarite in isolamento domiciliale. Ieri erano " + meno1.dimessi_guariti
               },
               {
                 "title": "Deceduti",
-                "number": meno0.deceduti,
+                "number": meno0.deceduti.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.deceduti - meno1.deceduti),
                 "percentage": this.toStringPlus((meno0.deceduti - meno1.deceduti) / (meno1.deceduti) * 100, 1),
                 "tooltip": "Totale delle persone decedute. Ieri erano " + meno1.deceduti
@@ -122,12 +122,12 @@
           }
         })
       },
-      toStringPlus: function (x, fixed=0) {
+      toStringPlus: function (x, fixed = 0) {
         x = x.toFixed(fixed)
         if (x < 0.0099 && x >= 0) x = 0
         if (x === 0) return x.toString()
-        if (x < 0) return x.toString()
-        if (x > 0) return "+" + x.toString()
+        if (x < 0) return x.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
+        if (x > 0) return "+" + x.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
       }
     }
   }
