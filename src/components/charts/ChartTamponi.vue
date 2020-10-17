@@ -44,7 +44,7 @@
         let url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json"
         this.$http.get(url).then((response) => {
           if (response.status === 200 && response.body && response.body.length > 1) {
-            this.total = response.body[response.body.length - 1].tamponi
+            this.total = response.body[response.body.length - 1].tamponi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
             let yesterday = 0
             response.body.forEach((item => {
               this.chartSeries[0].data.push(item.tamponi - yesterday)

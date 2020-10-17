@@ -1,7 +1,7 @@
 <template>
   <div class="chart-andamento">
     <BoxContainer :height="height" :minHeight="minHeight" :title="'Andamento italiano'" :loading="chartLoading">
-      <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
+      <apexchart ref="apexAndamento" v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
 </template>
@@ -23,22 +23,26 @@
       chartOptions: {},
       chartSeries: [
         {
-          name: "Attuali positivi",
-          data: []
-        },
-        {
           name: "Dimessi/Guariti",
           data: []
         },
         {
+          name: "Attuali positivi",
+          data: []
+        },
+        {
           name: "Deceduti",
+          data: []
+        },
+        {
+          name: "Totale casi",
           data: []
         }
       ],
     }),
     mounted() {
       this.chartOptions = this.getChartAreaOptions("apex-chart-andamento")
-      this.chartOptions.colors = ["#ffa547", "#228b22", "#e60000"]
+      this.chartOptions.colors = ["#228b22", "#ffa547", "#e60000", "#8a4343"]
       this.downloadData()
     },
     methods: {
@@ -48,12 +52,14 @@
         this.$http.get(url).then((response) => {
           if (response.status === 200 && response.body && response.body.length > 1) {
             response.body.forEach((item => {
-              this.chartSeries[0].data.push(item.totale_positivi)
-              this.chartSeries[1].data.push(item.dimessi_guariti)
+              this.chartSeries[0].data.push(item.dimessi_guariti)
+              this.chartSeries[1].data.push(item.totale_positivi)
               this.chartSeries[2].data.push(item.deceduti)
+              this.chartSeries[3].data.push(item.totale_casi)
               this.chartOptions.xaxis.categories.push(item.data)
             }))
             this.chartLoading = false
+            setTimeout(() => (this.$refs.apexAndamento.toggleSeries("Totale casi")), 100); // Disable
           }
         })
       }

@@ -1,7 +1,7 @@
 <template>
   <div class="global-box-container">
     <div class="content-container" :style="{'height' : height}">
-      <md-content :md-theme="theme" class="md-elevation-10 content-area" :style="{'min-height' : minHeight}">
+      <md-content :md-theme="theme" class="md-elevation-5 content-area" :style="{'min-height' : minHeight}">
         <div v-if="title" class="box-title">
           <span>{{title}}</span>
         </div>
