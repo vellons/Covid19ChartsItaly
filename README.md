@@ -6,6 +6,9 @@ Daily swabs trend, new positives and many other data to monitor the epidemiologi
 Dashboard link: [italia-covid19.web.app](https://italia-covid19.web.app)<br>
 Where does all the data come from? [github.com/pcm-dpc/COVID-19](https://github.com/pcm-dpc/COVID-19)
 
+## Example
+![Mark 8 photo](.github/dashboard.png)
+
 ## Project setup
 ```
 npm install
