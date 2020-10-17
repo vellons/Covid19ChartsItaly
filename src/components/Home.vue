@@ -17,8 +17,14 @@
     <chart-positivi-per-regione
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
       :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-nuovi-positivi-regione
+      class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-tamponi-regione
+      class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
 
-    <div class="md-layout-item md-size-100" style="text-align: center; margin-top: 20px">
+    <div class="md-layout-item md-size-100" style="text-align: center; margin: 20px">
       <a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19">
         Dati forniti dal Ministero della Salute</a><br>
       <router-link to="/info" style="color: orange">
@@ -34,7 +40,9 @@
   import ChartTamponi from "@/components/charts/ChartTamponi"
   import ChartPercentPositiviTamponi from "@/components/charts/ChartPercentualePositiviNeiTamponi"
   import ChartCondizionePositivi from "@/components/charts/ChartCondizionePositivi"
-  import ChartPositiviPerRegione from "@/components/charts/ChartPositiviPerRegione";
+  import ChartPositiviPerRegione from "@/components/charts/ChartPositiviPerRegione"
+  import ChartNuoviPositiviRegione from "@/components/charts/ChartNuoviPositiviRegione"
+  import ChartTamponiRegione from "@/components/charts/ChartTamponiRegione"
 
   export default {
     name: "Home",
@@ -44,7 +52,9 @@
       ChartTamponi,
       ChartPercentPositiviTamponi,
       ChartCondizionePositivi,
-      ChartPositiviPerRegione
+      ChartPositiviPerRegione,
+      ChartNuoviPositiviRegione,
+      ChartTamponiRegione,
     },
     data: () => ({
       loading: true,
