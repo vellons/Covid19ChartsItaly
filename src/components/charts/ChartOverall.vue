@@ -147,6 +147,10 @@
       .card-container {
         padding: 8px;
 
+        @media only screen and (max-width : 959px) {
+          padding: 8px 0;
+        }
+
         .covid-card {
           border: 1px solid #bbbbbb;
           border-radius: 10px;

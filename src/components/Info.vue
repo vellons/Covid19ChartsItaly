@@ -1,17 +1,17 @@
 <template>
   <div id="info-container">
     <div class="middle-center">
-      <img class="logo" src="../assets/logo.png" alt="Grafici Covid-19 ITA">
-      <div class="md-title">Grafici Covid-19 ITA</div>
-      <div class="md-subheading"><b>Versione:</b> 1.2.0 - <span @click="setAllCommitSha">{{commitSha}}</span>
+      <img class="logo" src="../assets/logo.png" alt="Grafici Covid-19 Italia">
+      <div class="md-title">Grafici Covid-19 Italia</div>
+      <div class="md-subheading"><b>Versione:</b> 1.2.1 - <span @click="setAllCommitSha">{{commitSha}}</span>
       </div>
       <div class="md-subheading"><b>Ultimo aggiornamento dati:</b> {{lastUpdate}}</div>
       <div style="margin-top: 10px">
         <md-switch v-model="themeSwitch" @change="changeTheme">Tema chiaro/scuro</md-switch>
       </div>
       <p><a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19/raw/master/schede-riepilogative/regioni/dpc-covid19-ita-scheda-regioni-latest.pdf">Scarica ultimo riepilogo ufficiale [PDF]</a></p>
-      <p><a class="md-accent" target="_blank" href="https://github.com/vellons/Covid19ChartsItaly">Codice sorgente</a></p>
-      <p><a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19">Fonte dati</a></p>
+      <p><a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19">Dati forniti dal Ministero della Salute</a></p>
+      <p><a class="md-accent" target="_blank" href="https://github.com/vellons/Covid19ChartsItaly">Codice sorgente dashboard</a></p>
     </div>
   </div>
 </template>

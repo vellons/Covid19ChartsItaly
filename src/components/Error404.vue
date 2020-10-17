@@ -4,7 +4,7 @@
       <md-app-toolbar class="md-primary" md-elevation="5">
         <router-link class="router-link" to="/">
           <img class="bar-logo" src="../assets/logo.png" alt="Logo"/>
-          <span class="md-title">Grafici Covid-19 ITA</span>
+          <span class="md-title">Grafici Covid-19 Italia</span>
         </router-link>
       </md-app-toolbar>
 
