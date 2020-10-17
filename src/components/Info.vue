@@ -3,7 +3,7 @@
     <div class="middle-center">
       <img class="logo" src="../assets/logo.png" alt="Grafici Covid-19 Italia">
       <div class="md-title">Grafici Covid-19 Italia</div>
-      <div class="md-subheading"><b>Versione:</b> 1.2.1 - <span @click="setAllCommitSha">{{commitSha}}</span>
+      <div class="md-subheading"><b>Versione:</b> 1.3.0 - <span @click="setAllCommitSha">{{commitSha}}</span>
       </div>
       <div class="md-subheading"><b>Ultimo aggiornamento dati:</b> {{lastUpdate}}</div>
       <div style="margin-top: 10px">
@@ -47,7 +47,7 @@
         this.chartLoading = true
         let url = "https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale-latest.json"
         this.$http.get(url).then((response) => {
-          if (response.status === 200 && response.body && response.body.length >= 1) {
+          if (response.status === 200 && response.body && response.body.length === 1) {
             this.lastUpdate = response.body[response.body.length - 1].data
           }
         })

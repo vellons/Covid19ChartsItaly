@@ -74,6 +74,45 @@ export const chartMixins = {
           }
         }
       }
+    },
+    getChartBarOptions: function (chartID) {
+      return {
+        chart: {
+          id: chartID,
+          locales: this.getChartLocales(),
+          defaultLocale: this.getChartLang(),
+          stacked: true,
+          toolbar: {
+            show: true,
+            tools: {
+              download: false,
+              selection: false,
+              zoom: true,
+              zoomin: false,
+              zoomout: false,
+              pan: false,
+              reset: true
+            },
+          },
+          width: "100%"
+        },
+        theme: {
+          mode: this.getChartTheme(),
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+          },
+        },
+        xaxis: {
+          type: "string",
+          categories: [] // Categories will be added here
+        },
+        tooltip: {
+          enabled: true,
+          shared: true,
+        }
+      }
     }
   }
 }
