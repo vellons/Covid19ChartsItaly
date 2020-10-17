@@ -7,19 +7,19 @@
         </md-button>
         <router-link class="router-link" to="/home">
           <img class="bar-logo" src="../assets/logo.png" alt="Logo"/>
-          <span class="md-title">Grafici Covid-19 ITA</span>
+          <span class="md-title">Grafici Covid-19 Italia</span>
         </router-link>
       </md-app-toolbar>
 
-      <md-app-drawer :md-active.sync="menuMaxExtension" md-persistent="mini">
-        <md-toolbar class="md-transparent" md-elevation="3">
+      <md-app-drawer :md-active.sync="menuMaxExtension"> <!--md-persistent="mini"-->
+        <!--md-toolbar class="md-transparent" md-elevation="3">
           <span>Menu</span>
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenuExtension">
               <md-icon>keyboard_arrow_left</md-icon>
             </md-button>
           </div>
-        </md-toolbar>
+        </md-toolbar-->
 
         <md-list v-if="showMenuItem">
           <div v-for="tab in menuTab" :key="tab.title">
