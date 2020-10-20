@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-import Index from '../components/Index'
-import Error404 from '../components/Error404'
-import Home from '../components/Home'
-import Info from '../components/Info'
+import Index from '@/components/Index'
+import Error404 from '@/components/Error404'
+import Home from '@/components/Home'
+import Info from '@/components/Info'
+import Provincia from '@/components/Provincia'
 
 
 const router = new VueRouter({
@@ -29,6 +30,11 @@ const router = new VueRouter({
           path: 'home',
           name: 'home',
           component: Home,
+        },
+        {
+          path: 'province',
+          name: 'province',
+          component: Provincia,
         },
         {
           path: 'info',

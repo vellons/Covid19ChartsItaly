@@ -65,8 +65,7 @@
             let meno2 = response.body[response.body.length - 3]
             let meno1 = response.body[response.body.length - 2]
             let meno0 = response.body[response.body.length - 1]
-            let date0 = new Date(meno0.data)
-            this.lastUpdate = moment(date0).format("DD/MM/YYYY") + " alle " + moment(date0).format("HH:mm")
+            this.lastUpdate = moment(meno0.data).format("DD/MM/YYYY") + " alle " + moment(meno0.data).format("HH:mm")
             this.covidCards = [
               {
                 "title": "Nuovi positivi",
@@ -149,14 +148,9 @@
 
 <style lang="scss">
   .chart-overall {
-    //padding: 8px;
 
     .overall-container {
       height: 100%;
-      //box-sizing: border-box;
-      //border: 1px solid #bbbbbb !important;
-      //border-radius: 10px;
-      //padding: 10px;
 
       .card-container {
         padding: 8px;

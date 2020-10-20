@@ -1,6 +1,6 @@
 {
   "name": "covid_charts_ita",
-  "version": "1.0.1",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -10,6 +10,7 @@
   "dependencies": {
     "apexcharts": "^3.22.0",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.0",
     "vue-material": "1.0.0-beta-15",

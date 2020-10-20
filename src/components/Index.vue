@@ -54,6 +54,11 @@
           link: "/home",
         },
         {
+          icon: "map",
+          title: "Province",
+          link: "/province",
+        },
+        {
           icon: "info",
           title: "Info",
           link: "/info",
