@@ -11,7 +11,7 @@ import App from './App.vue'
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.component('apexchart', VueApexCharts)
-Vue.use(VueMaterial)  // TODO: import all required components
+Vue.use(VueMaterial)
 
 new Vue({
   router,

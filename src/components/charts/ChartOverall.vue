@@ -1,7 +1,17 @@
 <template>
   <div class="chart-overall">
     <div class="overall-container">
-      <div class="md-layout">
+      <div class="md-layout" v-if="!loading">
+
+        <div class="md-layout-item md-size-100 card-container">
+          <div class="covid-card-lite md-elevation-5">
+            Ultimo aggiornamento: <b>{{lastUpdate}}</b>. Ogni giorno nuovi aggiornamenti alle <b>17:15 circa.</b><br>
+            <router-link to="/province" style="color: orange">
+              <span>Visualizza andamento tra le province</span>
+            </router-link>
+          </div>
+        </div>
+
         <div v-for="card in covidCards" :key="card.title"
              class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100 card-container">
           <div class="covid-card md-elevation-5">
@@ -31,6 +41,7 @@
 </template>
 
 <script>
+  let moment = require("moment")
   export default {
     name: "chart-overall",
     props: {
@@ -39,7 +50,8 @@
     },
     data: () => ({
       loading: true,
-      covidCards: []
+      covidCards: [],
+      lastUpdate: "",
     }),
     mounted() {
       this.downloadData()
@@ -53,6 +65,7 @@
             let meno2 = response.body[response.body.length - 3]
             let meno1 = response.body[response.body.length - 2]
             let meno0 = response.body[response.body.length - 1]
+            this.lastUpdate = moment(meno0.data).format("DD/MM/YYYY") + " alle " + moment(meno0.data).format("HH:mm")
             this.covidCards = [
               {
                 "title": "Nuovi positivi",
@@ -135,20 +148,22 @@
 
 <style lang="scss">
   .chart-overall {
-    //padding: 8px;
 
     .overall-container {
       height: 100%;
-      //box-sizing: border-box;
-      //border: 1px solid #bbbbbb !important;
-      //border-radius: 10px;
-      //padding: 10px;
 
       .card-container {
         padding: 8px;
 
-        @media only screen and (max-width : 959px) {
+        @media only screen and (max-width: 959px) {
           padding: 8px 0;
+        }
+
+        .covid-card-lite {
+          border: 1px solid #bbbbbb;
+          border-radius: 10px;
+          padding: 5px 15px;
+          min-width: 180px;
         }
 
         .covid-card {
@@ -158,7 +173,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 90px;
+          height: 70px;
           min-width: 180px;
 
           .left {
