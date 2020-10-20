@@ -111,6 +111,7 @@ export const chartMixins = {
         tooltip: {
           enabled: true,
           shared: true,
+          followCursor: true
         }
       }
     }

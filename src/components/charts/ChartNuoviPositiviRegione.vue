@@ -1,6 +1,7 @@
 <template>
   <div class="chart-nuovi-positivi-regione">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Regioni con più nuovi positivi'" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Regioni con più nuovi positivi'"
+                  :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="bar" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -40,7 +41,7 @@
         this.$http.get(url).then((response) => {
           if (response.status === 200 && response.body && response.body.length > 1) {
             let regioni = response.body
-            regioni = regioni.sort((a,b) => (a.nuovi_positivi < b.nuovi_positivi) ? 1 : ((b.nuovi_positivi < a.nuovi_positivi) ? -1 : 0))
+            regioni = regioni.sort((a, b) => (a.nuovi_positivi < b.nuovi_positivi) ? 1 : ((b.nuovi_positivi < a.nuovi_positivi) ? -1 : 0))
             for (let i = 0; i < 10; i++) {
               this.chartOptions.xaxis.categories.push(regioni[i].denominazione_regione)
               this.chartSeries[0].data.push(regioni[i].nuovi_positivi)

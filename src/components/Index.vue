@@ -12,14 +12,14 @@
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuMaxExtension"> <!--md-persistent="mini"-->
-        <!--md-toolbar class="md-transparent" md-elevation="3">
+        <md-toolbar class="md-transparent" md-elevation="3">
           <span>Menu</span>
           <div class="md-toolbar-section-end">
             <md-button class="md-icon-button md-dense" @click="toggleMenuExtension">
               <md-icon>keyboard_arrow_left</md-icon>
             </md-button>
           </div>
-        </md-toolbar-->
+        </md-toolbar>
 
         <md-list v-if="showMenuItem">
           <div v-for="tab in menuTab" :key="tab.title">
