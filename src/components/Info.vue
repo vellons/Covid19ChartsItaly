@@ -3,7 +3,7 @@
     <div class="middle-center">
       <img class="logo" src="../assets/logo.png" alt="Grafici Covid-19 Italia">
       <div class="md-title">Grafici Covid-19 Italia</div>
-      <div class="md-subheading"><b>Versione:</b> 1.4.1 - <span @click="setAllCommitSha">{{commitSha}}</span></div>
+      <div class="md-subheading"><b>Versione:</b> 1.4.2 - <span @click="setAllCommitSha">{{commitSha}}</span></div>
       <div>
         <md-switch v-model="themeSwitch" @change="changeTheme">Tema chiaro/scuro</md-switch>
       </div>
