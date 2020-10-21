@@ -33,7 +33,7 @@
         </md-list>
       </md-app-drawer>
 
-      <md-app-content>
+      <md-app-content :key="userTheme">
         <router-view @themeChanged="themeChanged"/>
       </md-app-content>
     </md-app>
@@ -41,98 +41,121 @@
 </template>
 
 <script>
-  export default {
-    name: 'Index',
-    data: () => ({
-      menuMaxExtension: false,
-      showMenuItem: false,
-      userTheme: "default",
-      menuTab: [
-        {
-          icon: "home",
-          title: "Home",
-          link: "/home",
-        },
-        {
-          icon: "map",
-          title: "Province",
-          link: "/province",
-        },
-        {
-          icon: "info",
-          title: "Info",
-          link: "/info",
-        },
-      ]
-    }),
-    mounted() {
-      this.themeChanged()
-      if (this.$route.fullPath === "/") {
-        this.$router.replace("/home").catch(() => {
-        });
-      }
-      this.showMenuItem = true
-    },
-    methods: {
-      toggleMenuExtension() {
-        this.menuMaxExtension = !this.menuMaxExtension
+export default {
+  name: 'Index',
+  data: () => ({
+    menuMaxExtension: false,
+    showMenuItem: false,
+    userTheme: "default",
+    menuTab: [
+      {
+        icon: "home",
+        title: "Home",
+        link: "/home",
       },
-      themeChanged: function () {
-        if (localStorage.userTheme === "dark") this.userTheme = "dark"
-        else this.userTheme = "default"
-      }
+      {
+        icon: "map",
+        title: "Province",
+        link: "/province",
+      },
+      {
+        icon: "info",
+        title: "Info",
+        link: "/info",
+      },
+    ]
+  }),
+  mounted() {
+    this.checkForDarkAndListener()
+    if (this.$route.fullPath === "/") {
+      this.$router.replace("/home").catch(() => {
+      });
     }
+    this.showMenuItem = true
+  },
+  methods: {
+    toggleMenuExtension() {
+      this.menuMaxExtension = !this.menuMaxExtension
+    },
+    themeChanged: function () {
+      if (localStorage.userTheme === "dark") this.userTheme = "dark"
+      else this.userTheme = "default"
+    },
+    checkForDarkAndListener: function () {
+      if (localStorage.userTheme === "dark" || (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        this.userTheme = "dark"
+        localStorage.userTheme = "dark"
+      } else {
+        this.userTheme = "default"
+        localStorage.userTheme = "light"
+      }
+      window.matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", event => { // Add listener to watch changes
+            if (event.matches) {
+              this.userTheme = "dark"
+              localStorage.userTheme = "dark"
+            } else {
+              this.userTheme = "default"
+              localStorage.userTheme = "light"
+            }
+          })
+    }
+  },
+  beforeDestroy: function () {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    })
   }
+}
 </script>
 
 <style lang="scss">
-  @import "../../src/style/variables.scss";
+@import "../../src/style/variables.scss";
 
-  #vue-js-index-container {
-    .md-app {
-      height: 100vh;
+#vue-js-index-container {
+  .md-app {
+    height: 100vh;
 
-      .router-link {
-        display: flex;
-        align-items: center;
-      }
+    .router-link {
+      display: flex;
+      align-items: center;
+    }
 
-      .bar-logo {
-        width: 35px !important;
-      }
+    .bar-logo {
+      width: 35px !important;
+    }
 
-      .md-app-drawer {
-        max-width: 300px !important;
-      }
+    .md-app-drawer {
+      max-width: 300px !important;
+    }
 
-      .md-list-item {
-        &:hover {
-          .md-icon {
-            color: $accent;
-            opacity: 0.8;
-          }
-
-          .md-list-item-text {
-            color: $accent;
-            transition: color .4s cubic-bezier(.4, 0, .2, 1);
-            opacity: 0.8;
-          }
-        }
-
-        &.active {
-          .md-icon {
-            color: $accent;
-          }
-
-          .md-list-item-text {
-            color: $accent;
-          }
+    .md-list-item {
+      &:hover {
+        .md-icon {
+          color: $accent;
+          opacity: 0.8;
         }
 
         .md-list-item-text {
-          font-weight: bold;
+          color: $accent;
+          transition: color .4s cubic-bezier(.4, 0, .2, 1);
+          opacity: 0.8;
         }
+      }
+
+      &.active {
+        .md-icon {
+          color: $accent;
+        }
+
+        .md-list-item-text {
+          color: $accent;
+        }
+      }
+
+      .md-list-item-text {
+        font-weight: bold;
       }
     }
   }
+}
 </style>
