@@ -68,46 +68,46 @@
             this.lastUpdate = moment(meno0.data).format("DD/MM/YYYY") + " alle " + moment(meno0.data).format("HH:mm")
             this.covidCards = [
               {
-                "title": "Nuovi positivi",
+                "title": "Nuovi positivi oggi",
                 "number": meno0.nuovi_positivi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.nuovi_positivi - meno1.nuovi_positivi),
                 "percentage": this.toStringPlus((meno0.nuovi_positivi - meno1.nuovi_positivi) / meno1.nuovi_positivi * 100, 1),
                 "tooltip": "Nuovi positivi al Covid-19 oggi. Ieri erano " + (meno1.nuovi_positivi)
               },
               {
-                "title": "Positività",
-                "number": (meno0.nuovi_positivi / (meno0.tamponi - meno1.tamponi) * 100).toFixed(2) + "%",
-                "difference": "Ieri: " + (meno1.nuovi_positivi / (meno1.tamponi - meno2.tamponi) * 100).toFixed(2) + "%",
+                "title": "Positività tamponi oggi",
+                "number": "Ieri: " + (meno1.nuovi_positivi / (meno1.tamponi - meno2.tamponi) * 100).toFixed(2) + "%",
+                "difference": "Tamponi oggi: " + (meno0.tamponi - meno1.tamponi).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "percentage": (meno0.nuovi_positivi / (meno0.tamponi - meno1.tamponi) * 100).toFixed(2),
-                "tooltip": "Percentuale di positivi al test oggi = NuoviPositiviOggi/TamponiOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.tamponi - meno1.tamponi) + "*100"
+                "tooltip": "Percentuale di tamponi positivi al test oggi = NuoviPositiviOggi/TamponiOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.tamponi - meno1.tamponi) + "*100"
               },
               {
-                "title": "Decessi",
-                "number": (meno0.deceduti - meno1.deceduti).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
-                "difference": this.toStringPlus((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)),
-                "percentage": this.toStringPlus(((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)) / (meno1.deceduti - meno2.deceduti) * 100, 1),
-                "tooltip": "Decessi per Covid-19 avvenuti oggi. Ieri erano " + (meno1.deceduti - meno2.deceduti)
+                "title": "Positività persone oggi",
+                "number": "Ieri: " + (meno1.nuovi_positivi / (meno1.casi_testati - meno2.casi_testati) * 100).toFixed(2) + "%",
+                "difference":"Persone prima volta: " + (meno0.casi_testati - meno1.casi_testati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "percentage": (meno0.nuovi_positivi / (meno0.casi_testati - meno1.casi_testati) * 100).toFixed(2),
+                "tooltip": "Percentuale di persone che sono risultate positive per la prima volta al test oggi = NuoviPositiviOggi/PersoneTestateOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.casi_testati - meno1.casi_testati) + "*100"
               },
               {
-                "title": "Terapia intensiva",
-                "number": (meno0.terapia_intensiva - meno1.terapia_intensiva).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
-                "difference": this.toStringPlus((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)),
-                "percentage": this.toStringPlus(((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)) / (meno1.terapia_intensiva - meno2.terapia_intensiva) * 100, 1),
-                "tooltip": "Persone che sono state ricoverate oggi in terapia intensiva. Ieri erano " + (meno1.terapia_intensiva - meno2.terapia_intensiva)
-              },
-              {
-                "title": "Ricoveri",
+                "title": "Ricoveri oggi",
                 "number": (meno0.totale_ospedalizzati - meno1.totale_ospedalizzati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)),
                 "percentage": this.toStringPlus(((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)) / (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) * 100, 1),
                 "tooltip": "Persone che sono state ricoverate oggi con sintomi. Ieri erano " + (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) + ". (Comprese terapie intensive)"
               },
               {
-                "title": "Totale casi",
-                "number": meno0.totale_casi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
-                "difference": this.toStringPlus(meno0.nuovi_positivi),
-                "percentage": this.toStringPlus((meno0.totale_casi - meno1.totale_casi) / (meno1.totale_casi) * 100, 1),
-                "tooltip": "Totale delle persone che sono risultate positive al Covid-19. Ieri il totale calcolato era " + meno1.totale_casi
+                "title": "Terapia intensiva oggi",
+                "number": (meno0.terapia_intensiva - meno1.terapia_intensiva).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "difference": this.toStringPlus((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)),
+                "percentage": this.toStringPlus(((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)) / (meno1.terapia_intensiva - meno2.terapia_intensiva) * 100, 1),
+                "tooltip": "Persone che sono state ricoverate oggi in terapia intensiva. Ieri erano " + (meno1.terapia_intensiva - meno2.terapia_intensiva)
+              },
+              {
+                "title": "Decessi oggi",
+                "number": (meno0.deceduti - meno1.deceduti).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "difference": this.toStringPlus((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)),
+                "percentage": this.toStringPlus(((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)) / (meno1.deceduti - meno2.deceduti) * 100, 1),
+                "tooltip": "Decessi per Covid-19 avvenuti oggi. Ieri erano " + (meno1.deceduti - meno2.deceduti)
               },
               {
                 "title": "Attuali positivi",
@@ -121,7 +121,7 @@
                 "number": meno0.dimessi_guariti.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.dimessi_guariti - meno1.dimessi_guariti),
                 "percentage": this.toStringPlus((meno0.dimessi_guariti - meno1.dimessi_guariti) / (meno1.dimessi_guariti) * 100, 1),
-                "tooltip": "Totale delle persone che sono state dimesse o sono guarite in isolamento domiciliale. Ieri erano " + meno1.dimessi_guariti
+                "tooltip": "Totale delle persone che sono state dimesse o sono guarite restando in isolamento domiciliale. Ieri erano " + meno1.dimessi_guariti
               },
               {
                 "title": "Deceduti",
@@ -129,7 +129,14 @@
                 "difference": this.toStringPlus(meno0.deceduti - meno1.deceduti),
                 "percentage": this.toStringPlus((meno0.deceduti - meno1.deceduti) / (meno1.deceduti) * 100, 1),
                 "tooltip": "Totale delle persone decedute. Ieri erano " + meno1.deceduti
-              }
+              },
+              /*{
+                "title": "Totale casi",
+                "number": meno0.totale_casi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "difference": this.toStringPlus(meno0.nuovi_positivi),
+                "percentage": this.toStringPlus((meno0.totale_casi - meno1.totale_casi) / (meno1.totale_casi) * 100, 1),
+                "tooltip": "Totale delle persone che sono risultate positive al Covid-19. Ieri era " + meno1.totale_casi
+              }*/
             ]
             this.loading = false
           }
@@ -173,7 +180,8 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          height: 70px;
+          min-height: 80px;
+          max-height: 120px;
           min-width: 180px;
 
           .left {
@@ -188,6 +196,9 @@
               .title {
                 font-weight: bold;
                 font-size: 120%;
+                max-width: 95%;
+                height: 20px;
+                overflow: hidden;
               }
 
               .info {

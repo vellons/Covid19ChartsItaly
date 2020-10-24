@@ -7,7 +7,7 @@ Dashboard link: [italia-covid19.web.app](https://italia-covid19.web.app)<br>
 Where does all the data come from? [github.com/pcm-dpc/COVID-19](https://github.com/pcm-dpc/COVID-19)
 
 ## Example
-![Mark 8 photo](.github/dashboard.png)
+![Dashboard](.github/dashboard.png)
 
 ## Project setup
 ```

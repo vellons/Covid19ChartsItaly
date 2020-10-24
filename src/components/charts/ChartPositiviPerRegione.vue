@@ -46,7 +46,7 @@
           if (response.status === 200 && response.body && response.body.length > 1) {
             let regioni = response.body
             regioni = regioni.sort((a, b) => (a.totale_positivi < b.totale_positivi) ? 1 : ((b.totale_positivi < a.totale_positivi) ? -1 : 0))
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 8; i++) {
               this.chartOptions.xaxis.categories.push(regioni[i].denominazione_regione)
               this.chartSeries[0].data.push(regioni[i].totale_positivi - regioni[i].nuovi_positivi)
               this.chartSeries[1].data.push(regioni[i].nuovi_positivi)

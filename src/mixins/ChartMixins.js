@@ -102,6 +102,10 @@ export const chartMixins = {
         plotOptions: {
           bar: {
             horizontal: false,
+            dataLabels: {
+              enabled: false,
+              //position: 'top'
+            }
           },
         },
         xaxis: {

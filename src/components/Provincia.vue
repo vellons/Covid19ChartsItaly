@@ -17,7 +17,9 @@
             <md-option v-for="p in province" :value="p" :key="p">{{p}}</md-option>
           </md-select>
         </md-field>
-        <div v-if="provinceList.length >= 2"><br>Considera che le province hanno un numero differente di abitanti e di conseguenza un numero non comparabile di positivi.</div>
+        <div v-if="provinceList.length >= 2"><br>Considera che le province hanno un numero differente di abitanti e di
+          conseguenza un numero non comparabile di positivi.
+        </div>
       </div>
     </BoxContainer>
 
