@@ -1,7 +1,8 @@
 <template>
   <div class="home-container md-layout">
-    <chart-overall class="md-layout-item md-size-66 md-medium-size-100 md-small-size-100"
-                   :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-overall
+      class="md-layout-item md-size-66 md-medium-size-100 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
     <chart-andamento
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
       :height="boxHeight" :minHeight="boxMinHeight"/>

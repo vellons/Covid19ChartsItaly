@@ -41,7 +41,7 @@
           if (response.status === 200 && response.body && response.body.length > 1) {
             let regioni = response.body
             regioni = regioni.sort((a, b) => (a.tamponi < b.tamponi) ? 1 : ((b.tamponi < a.tamponi) ? -1 : 0))
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 8; i++) {
               this.chartOptions.xaxis.categories.push(regioni[i].denominazione_regione)
               this.chartSeries[0].data.push(regioni[i].tamponi)
             }

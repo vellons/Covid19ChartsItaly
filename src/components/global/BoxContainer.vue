@@ -75,6 +75,7 @@
         flex-direction: column;
 
         .box-title {
+          min-height: 45px;
           span {
             margin: 0;
             font-size: 120%;

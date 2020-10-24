@@ -1,6 +1,6 @@
 <template>
   <div class="chart-percent-positivi-tamponi">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Percentuale di positivi al tampone'"
+    <BoxContainer :height="height" :minHeight="minHeight" :title="'Percentuale di tamponi positivi'"
                   :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
@@ -24,7 +24,7 @@
       chartOptions: {},
       chartSeries: [
         {
-          name: "Nuovi positivi/Tamponi*100",
+          name: "NuoviPositiviOggi/TamponiEffettuati*100",
           data: []
         }
       ],

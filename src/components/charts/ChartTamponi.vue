@@ -1,6 +1,8 @@
 <template>
   <div class="chart-tamponi">
-    <BoxContainer :height="height" :minHeight="minHeight" :title="'Totale tamponi: ' + total" :loading="chartLoading">
+    <BoxContainer :height="height" :minHeight="minHeight"
+                  :title="'Totale tamponi: ' + total + ' - Persone testate: ' + totalPersonTested"
+                  :loading="chartLoading">
       <apexchart v-if="!chartLoading" type="area" :options="chartOptions" :series="chartSeries"/>
     </BoxContainer>
   </div>
@@ -31,7 +33,8 @@
           data: []
         }
       ],
-      total: ""
+      total: "",
+      totalPersonTested: ""
     }),
     mounted() {
       this.chartOptions = this.getChartAreaOptions("apex-chart-tamponi")
@@ -45,6 +48,7 @@
         this.$http.get(url).then((response) => {
           if (response.status === 200 && response.body && response.body.length > 1) {
             this.total = response.body[response.body.length - 1].tamponi.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
+            this.totalPersonTested = response.body[response.body.length - 1].casi_testati.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
             let yesterday = 0
             response.body.forEach((item => {
               this.chartSeries[0].data.push(item.tamponi - yesterday)
