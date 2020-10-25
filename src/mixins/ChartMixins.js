@@ -103,8 +103,8 @@ export const chartMixins = {
           bar: {
             horizontal: false,
             dataLabels: {
-              enabled: false,
-              //position: 'top'
+              enabled: true,
+              position: 'top'
             }
           },
         },
