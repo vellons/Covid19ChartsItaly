@@ -5,7 +5,8 @@
 
         <div class="md-layout-item md-size-100 card-container">
           <div class="covid-card-lite md-elevation-5">
-            Ultimo aggiornamento: <b>{{lastUpdate}}</b>. Ogni giorno nuovi aggiornamenti alle <b>17:15 circa.</b><br>
+            Ultimo aggiornamento: <span style="font-size: 120%"><b>{{lastUpdate}}</b></span>.
+            Ogni giorno nuovi aggiornamenti alle <b>17:15 circa.</b><br>
             <router-link to="/province" style="color: orange">
               <span>Visualizza andamento tra le province</span>
             </router-link>
@@ -35,6 +36,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -84,16 +86,16 @@
               {
                 "title": "Positività persone oggi",
                 "number": "Ieri: " + (meno1.nuovi_positivi / (meno1.casi_testati - meno2.casi_testati) * 100).toFixed(2) + "%",
-                "difference":"Persone prima volta: " + (meno0.casi_testati - meno1.casi_testati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "difference":"Persone primo test: " + (meno0.casi_testati - meno1.casi_testati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "percentage": (meno0.nuovi_positivi / (meno0.casi_testati - meno1.casi_testati) * 100).toFixed(2),
-                "tooltip": "Percentuale di persone che sono risultate positive per la prima volta al test oggi = NuoviPositiviOggi/PersoneTestateOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.casi_testati - meno1.casi_testati) + "*100"
+                "tooltip": "Percentuale di persone che sono risultate positive al primo test oggi = NuoviPositiviOggi/CasiTestatiOggi*100 --> " + meno0.nuovi_positivi + "/" + (meno0.casi_testati - meno1.casi_testati) + "*100"
               },
               {
                 "title": "Ricoveri oggi",
-                "number": (meno0.totale_ospedalizzati - meno1.totale_ospedalizzati).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
-                "difference": this.toStringPlus((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)),
-                "percentage": this.toStringPlus(((meno0.totale_ospedalizzati - meno1.totale_ospedalizzati) - (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati)) / (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) * 100, 1),
-                "tooltip": "Persone che sono state ricoverate oggi con sintomi. Ieri erano " + (meno1.totale_ospedalizzati - meno2.totale_ospedalizzati) + ". (Comprese terapie intensive)"
+                "number": (meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
+                "difference": this.toStringPlus((meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi) - (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi)),
+                "percentage": this.toStringPlus(((meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi) - (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi)) / (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi) * 100, 1),
+                "tooltip": "Persone che sono state ricoverate oggi con sintomi. Ieri erano " + (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi) + ". (Terapie intensive escluse)"
               },
               {
                 "title": "Terapia intensiva oggi",
