@@ -59,7 +59,7 @@
               this.chartOptions.xaxis.categories.push(item.data)
             }))
             this.chartLoading = false
-            setTimeout(() => function () {
+            setTimeout(() => {
               try {
                 this.$refs.apexAndamento.toggleSeries("Totale casi")
               } catch (error) {

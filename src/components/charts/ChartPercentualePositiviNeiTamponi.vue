@@ -66,7 +66,7 @@
               yesterdayCasiTestati = item.casi_testati
             }))
             this.chartLoading = false
-            setTimeout(() => function () {
+            setTimeout(() => {
               try {
                 this.$refs.apexPositivita.toggleSeries("% Positività persone primo test")
               } catch (error) {
