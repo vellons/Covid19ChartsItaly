@@ -93,7 +93,7 @@
           localStorage.userTheme = "light"
         }
         try {
-          window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => function () {
+          window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
             if (event.matches) {
               this.userTheme = "dark"
               localStorage.userTheme = "dark"
@@ -103,14 +103,13 @@
             }
           })
         } catch (error) {
-          this.userTheme = "default"
-          localStorage.userTheme = "light"
+          this.themeChanged()
           console.error("Failed to set theme listener", error.message)
         }
       }
     },
     beforeDestroy: function () {
-      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", () => function () {
+      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", () => {
       })
     }
   }

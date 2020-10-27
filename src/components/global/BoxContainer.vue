@@ -51,7 +51,7 @@
       loading: function () {
         this.showSpinnerLoading = this.loading;
         if (!this.showSpinnerLoading) {
-          setTimeout(() => function () {this.showContent = true}, 25);
+          setTimeout(() => (this.showContent = true), 25);
         } else {
           this.showContent = false;
         }
