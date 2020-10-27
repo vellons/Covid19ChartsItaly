@@ -66,7 +66,13 @@
               yesterdayCasiTestati = item.casi_testati
             }))
             this.chartLoading = false
-            setTimeout(() => (this.$refs.apexPositivita.toggleSeries("% Positività persone primo test")), 100); // Disable
+            setTimeout(() => function () {
+              try {
+                this.$refs.apexPositivita.toggleSeries("% Positività persone primo test")
+              } catch (error) {
+                console.error("Error: ", error.message)
+              }
+            }, 150); // Disable
           }
         })
       }

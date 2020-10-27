@@ -24,7 +24,7 @@
         <md-list v-if="showMenuItem">
           <div v-for="tab in menuTab" :key="tab.title">
             <router-link :to="tab.link">
-              <md-list-item :class="{'active': $route.fullPath.includes(tab.link)}">
+              <md-list-item :class="{'active': $route.path.includes(tab.link)}">
                 <md-icon class="md-icon">{{tab.icon}}</md-icon>
                 <span class="md-list-item-text">{{tab.title}}</span>
               </md-list-item>
@@ -69,7 +69,7 @@
     mounted() {
       this.isLoading = true
       this.checkForDarkAndListener()
-      if (this.$route.fullPath === "/") {
+      if (this.$route.path === "/") {
         this.$router.replace("/home").catch(() => {
         });
       }
@@ -92,19 +92,25 @@
           this.userTheme = "default"
           localStorage.userTheme = "light"
         }
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
-          if (event.matches) {
-            this.userTheme = "dark"
-            localStorage.userTheme = "dark"
-          } else {
-            this.userTheme = "default"
-            localStorage.userTheme = "light"
-          }
-        })
+        try {
+          window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => function () {
+            if (event.matches) {
+              this.userTheme = "dark"
+              localStorage.userTheme = "dark"
+            } else {
+              this.userTheme = "default"
+              localStorage.userTheme = "light"
+            }
+          })
+        } catch (error) {
+          this.userTheme = "default"
+          localStorage.userTheme = "light"
+          console.error("Failed to set theme listener", error.message)
+        }
       }
     },
     beforeDestroy: function () {
-      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", () => {
+      window.matchMedia("(prefers-color-scheme: dark)").removeEventListener("change", () => function () {
       })
     }
   }

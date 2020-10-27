@@ -59,7 +59,13 @@
               this.chartOptions.xaxis.categories.push(item.data)
             }))
             this.chartLoading = false
-            setTimeout(() => (this.$refs.apexAndamento.toggleSeries("Totale casi")), 100); // Disable
+            setTimeout(() => function () {
+              try {
+                this.$refs.apexAndamento.toggleSeries("Totale casi")
+              } catch (error) {
+                console.error("Error: ", error.message)
+              }
+            }, 150); // Disable
           }
         })
       }
