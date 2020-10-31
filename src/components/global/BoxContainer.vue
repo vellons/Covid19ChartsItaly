@@ -40,7 +40,7 @@
       }
     },
     data: () => ({
-      showSpinnerLoading: true,
+      showSpinnerLoading: false,
       showContent: false,
     }),
     mounted() {

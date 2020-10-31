@@ -3,7 +3,7 @@
 
     <BoxContainer
       class="md-layout-item md-size-40 md-medium-size-25 md-small-size-100"
-      :height="boxHeight" :minHeight="boxMinHeight" :title="'Filtri'" :loading="false">
+      :height="boxHeight" :minHeight="boxMinHeight" :title="'Filtri'">
       <div style="margin: 15px">
         <div>
           <md-switch v-model="showTotal" @change="showTotalChanged">Mostra giornaliero/totale</md-switch>
@@ -41,8 +41,8 @@
 </template>
 
 <script>
-  import BoxContainer from "@/components/global/BoxContainer"
-  import ChartTotaleCasiPerProvincia from "@/components/charts/ChartTotaleCasiPerProvincia"
+  import BoxContainer from "@/components/global/BoxContainer";
+  import ChartTotaleCasiPerProvincia from "@/components/charts/ChartTotaleCasiPerProvincia";
 
   export default {
     name: "Provincia",

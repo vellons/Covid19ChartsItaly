@@ -42,6 +42,12 @@
           return value + "%"
         }
       }
+      this.chartOptions.yaxis = {}
+      this.chartOptions.yaxis.labels = {
+        formatter: function (value) {
+          return value + "%"
+        }
+      }
       this.downloadData()
     },
     methods: {
