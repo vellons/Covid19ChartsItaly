@@ -18,11 +18,14 @@
     <chart-positivi-per-regione
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
       :height="boxHeight" :minHeight="boxMinHeight"/>
-    <chart-nuovi-positivi-regione
+    <chart-percentuale-positivi-regione
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
       :height="boxHeight" :minHeight="boxMinHeight"/>
     <chart-tamponi-regione
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
+      :height="boxHeight" :minHeight="boxMinHeight"/>
+    <chart-nuovi-positivi-regione
+      class="md-layout-item md-medium-size-50 md-small-size-100 only-mobile"
       :height="boxHeight" :minHeight="boxMinHeight"/>
 
     <div class="md-layout-item md-size-100" style="text-align: center; margin: 20px">
@@ -36,14 +39,15 @@
 </template>
 
 <script>
-  import ChartOverall from "@/components/charts/ChartOverall"
-  import ChartAndamento from "@/components/charts/ChartAndamento"
-  import ChartTamponi from "@/components/charts/ChartTamponi"
-  import ChartPercentPositiviTamponi from "@/components/charts/ChartPercentualePositiviNeiTamponi"
-  import ChartCondizionePositivi from "@/components/charts/ChartCondizionePositivi"
-  import ChartPositiviPerRegione from "@/components/charts/ChartPositiviPerRegione"
-  import ChartNuoviPositiviRegione from "@/components/charts/ChartNuoviPositiviRegione"
-  import ChartTamponiRegione from "@/components/charts/ChartTamponiRegione"
+  import ChartOverall from "@/components/charts/ChartOverall";
+  import ChartAndamento from "@/components/charts/ChartAndamento";
+  import ChartTamponi from "@/components/charts/ChartTamponi";
+  import ChartPercentPositiviTamponi from "@/components/charts/ChartPercentualePositiviNeiTamponi";
+  import ChartCondizionePositivi from "@/components/charts/ChartCondizionePositivi";
+  import ChartPositiviPerRegione from "@/components/charts/ChartPositiviPerRegione";
+  import ChartNuoviPositiviRegione from "@/components/charts/ChartNuoviPositiviRegione";
+  import ChartTamponiRegione from "@/components/charts/ChartTamponiRegione";
+  import ChartPercentualePositiviRegione from "@/components/charts/ChartPercentualePositiviPerRegione";
 
   export default {
     name: "Home",
@@ -56,6 +60,7 @@
       ChartPositiviPerRegione,
       ChartNuoviPositiviRegione,
       ChartTamponiRegione,
+      ChartPercentualePositiviRegione,
     },
     data: () => ({
       loading: true,
@@ -64,3 +69,13 @@
     })
   }
 </script>
+
+<style lang="scss">
+  .home-container {
+    .only-mobile {
+      @media only screen and (min-width: 1279px) {
+        display: none;
+      }
+    }
+  }
+</style>

@@ -3,7 +3,8 @@
     <BoxContainer :height="height" :minHeight="minHeight" :title="(showTotal ? 'Totale casi': 'Casi giorno per giorno')"
                   :loading="chartLoading">
       <div style="margin: 10px" v-if="!chartLoading && provinceList.length > 0">
-        Ultimo aggiornamento: <b>{{lastUpdate}}</b>. Ogni giorno nuovi aggiornamenti alle <b>17:15 circa.</b><br>
+        Ultimo aggiornamento: <span style="font-size: 120%"><b>{{lastUpdate}}</b></span>.
+        Ogni giorno nuovi aggiornamenti alle <b>17:15 circa.</b><br>
         <router-link to="/home" style="color: orange">
           <span>Visualizza andamento italiano</span>
         </router-link>
@@ -17,9 +18,9 @@
 </template>
 
 <script>
-  let moment = require("moment")
-  import BoxContainer from "@/components/global/BoxContainer"
-  import {chartMixins} from "@/mixins/ChartMixins"
+  let moment = require("moment");
+  import BoxContainer from "@/components/global/BoxContainer";
+  import {chartMixins} from "@/mixins/ChartMixins";
 
   export default {
     name: "chart-totale-casi-per-provincia",

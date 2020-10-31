@@ -43,7 +43,7 @@
 </template>
 
 <script>
-  let moment = require("moment")
+  let moment = require("moment");
   export default {
     name: "chart-overall",
     props: {

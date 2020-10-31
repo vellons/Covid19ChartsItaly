@@ -24,7 +24,7 @@
         <md-list v-if="showMenuItem">
           <div v-for="tab in menuTab" :key="tab.title">
             <router-link :to="tab.link">
-              <md-list-item :class="{'active': $route.path.includes(tab.link)}">
+              <md-list-item :class="{'active': $route.path.includes(tab.link)}" @click="menuMaxExtension = false">
                 <md-icon class="md-icon">{{tab.icon}}</md-icon>
                 <span class="md-list-item-text">{{tab.title}}</span>
               </md-list-item>
