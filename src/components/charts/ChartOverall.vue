@@ -29,7 +29,12 @@
                 <div class="difference">{{card.difference}}</div>
               </div>
             </div>
-            <div class="right">
+            <div class="right" v-if="card.greaterIsPositive">
+              <div class="percentage zero" v-if="card.percentage == 0">{{card.percentage}}%</div>
+              <div class="percentage no" v-else-if="card.percentage < 0">{{card.percentage}}%</div>
+              <div class="percentage yes" v-else-if="card.percentage > 0">{{card.percentage}}%</div>
+            </div>
+            <div class="right" v-else>
               <div class="percentage zero" v-if="card.percentage == 0">{{card.percentage}}%</div>
               <div class="percentage yes" v-else-if="card.percentage < 0">{{card.percentage}}%</div>
               <div class="percentage no" v-else-if="card.percentage > 0">{{card.percentage}}%</div>
@@ -94,21 +99,21 @@
                 "title": "Ricoveri oggi",
                 "number": (meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi) - (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi)),
-                "percentage": this.toStringPlus(((meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi) - (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi)) / (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi) * 100, 1),
+                "percentage": this.calcIncreaseDecreasePercentage(meno0.ricoverati_con_sintomi - meno1.ricoverati_con_sintomi, meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi),
                 "tooltip": "Persone che sono state ricoverate oggi con sintomi. Ieri erano " + (meno1.ricoverati_con_sintomi - meno2.ricoverati_con_sintomi) + ". (Terapie intensive escluse)"
               },
               {
                 "title": "Terapia intensiva oggi",
                 "number": (meno0.terapia_intensiva - meno1.terapia_intensiva).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)),
-                "percentage": this.toStringPlus(((meno0.terapia_intensiva - meno1.terapia_intensiva) - (meno1.terapia_intensiva - meno2.terapia_intensiva)) / (meno1.terapia_intensiva - meno2.terapia_intensiva) * 100, 1),
+                "percentage": this.calcIncreaseDecreasePercentage(meno0.terapia_intensiva - meno1.terapia_intensiva, meno1.terapia_intensiva - meno2.terapia_intensiva),
                 "tooltip": "Persone che sono state ricoverate oggi in terapia intensiva. Ieri erano " + (meno1.terapia_intensiva - meno2.terapia_intensiva)
               },
               {
                 "title": "Decessi oggi",
                 "number": (meno0.deceduti - meno1.deceduti).toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)),
-                "percentage": this.toStringPlus(((meno0.deceduti - meno1.deceduti) - (meno1.deceduti - meno2.deceduti)) / (meno1.deceduti - meno2.deceduti) * 100, 1),
+                "percentage": this.calcIncreaseDecreasePercentage(meno0.deceduti - meno1.deceduti, meno1.deceduti - meno2.deceduti),
                 "tooltip": "Decessi per Covid-19 avvenuti oggi. Ieri erano " + (meno1.deceduti - meno2.deceduti)
               },
               {
@@ -123,7 +128,8 @@
                 "number": meno0.dimessi_guariti.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.'),
                 "difference": this.toStringPlus(meno0.dimessi_guariti - meno1.dimessi_guariti),
                 "percentage": this.toStringPlus((meno0.dimessi_guariti - meno1.dimessi_guariti) / (meno1.dimessi_guariti) * 100, 1),
-                "tooltip": "Totale delle persone che sono state dimesse o sono guarite restando in isolamento domiciliale. Ieri erano " + meno1.dimessi_guariti
+                "tooltip": "Totale delle persone che sono state dimesse o sono guarite restando in isolamento domiciliale. Ieri erano " + meno1.dimessi_guariti,
+                "greaterIsPositive": true
               },
               {
                 "title": "Deceduti",
@@ -150,6 +156,14 @@
         if (x === 0) return x.toString()
         if (x < 0) return x.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
         if (x > 0) return "+" + x.toString().replace(/\d(?=(?:\d{3})+$)/g, '$&.')
+      },
+      calcIncreaseDecreasePercentage: function (now, yesterday) {
+        if (now < yesterday) {
+          return this.toStringPlus(-Math.abs((yesterday - now) / yesterday * 100), 1)
+        }
+        else {
+          return this.toStringPlus(Math.abs((now - yesterday) / yesterday * 100), 1)
+        }
       }
     }
   }
