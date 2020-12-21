@@ -5,16 +5,16 @@
       :height="boxHeight" :minHeight="boxMinHeight"/>
     <chart-andamento
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
-      :height="boxHeight" :minHeight="boxMinHeight"/>
+      :height="boxHeight" :minHeight="boxMinHeight" :showLast30="showLast30Dashboard"/>
     <chart-tamponi
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
-      :height="boxHeight" :minHeight="boxMinHeight"/>
+      :height="boxHeight" :minHeight="boxMinHeight" :showLast30="showLast30Dashboard"/>
     <chart-percent-positivi-tamponi
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
-      :height="boxHeight" :minHeight="boxMinHeight"/>
+      :height="boxHeight" :minHeight="boxMinHeight" :showLast30="showLast30Dashboard"/>
     <chart-condizione-positivi
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
-      :height="boxHeight" :minHeight="boxMinHeight"/>
+      :height="boxHeight" :minHeight="boxMinHeight" :showLast30="showLast30Dashboard"/>
     <chart-positivi-per-regione
       class="md-layout-item md-size-33 md-medium-size-50 md-small-size-100"
       :height="boxHeight" :minHeight="boxMinHeight"/>
@@ -29,6 +29,13 @@
       :height="boxHeight" :minHeight="boxMinHeight"/>
 
     <div class="md-layout-item md-size-100" style="text-align: center; margin: 20px">
+
+      <div style="margin: 5px">
+        <md-switch v-model="showLast30Dashboard" @change="showLast30DashboardChanged">
+          Mostra solo ultimi 30 giorni nei grafici
+        </md-switch>
+      </div>
+
       <a class="md-accent" target="_blank" href="https://github.com/pcm-dpc/COVID-19">
         Dati forniti dal Ministero della Salute</a><br>
       <router-link to="/info" style="color: orange">
@@ -65,8 +72,17 @@
     data: () => ({
       loading: true,
       boxHeight: "100%",
-      boxMinHeight: "275px"
-    })
+      boxMinHeight: "275px",
+      showLast30Dashboard: false
+    }),
+    mounted() {
+      this.showLast30Dashboard = localStorage.showLast30Dashboard === "true"
+    },
+    methods: {
+      showLast30DashboardChanged: function () {
+        localStorage.showLast30Dashboard = this.showLast30Dashboard
+      }
+    }
   }
 </script>
 

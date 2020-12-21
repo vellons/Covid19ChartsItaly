@@ -17,7 +17,11 @@
     mixins: [chartMixins],
     props: {
       height: {default: "100%"},
-      minHeight: {default: "300px"}
+      minHeight: {default: "300px"},
+      showLast30: {
+        type: Boolean,
+        default: false
+      }
     },
     data: () => ({
       chartLoading: true,
@@ -42,13 +46,22 @@
           return value + "%"
         }
       }
-      this.chartOptions.yaxis = {}
+      this.chartOptions.yaxis = {
+        min: 0
+      }
       this.chartOptions.yaxis.labels = {
         formatter: function (value) {
-          return value + "%"
+          return (value).toFixed(1) + "%"
         }
       }
       this.downloadData()
+    },
+    watch: {
+      showLast30: function (show) {
+        let temp = {...this.chartOptions}
+        temp.xaxis.min = show ? new Date().setDate(new Date().getDate() - 30) : undefined
+        this.chartOptions = temp
+      }
     },
     methods: {
       downloadData: function () {
