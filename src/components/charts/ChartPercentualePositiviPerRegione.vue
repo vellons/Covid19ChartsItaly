@@ -40,7 +40,7 @@
       this.chartOptions.yaxis = {}
       this.chartOptions.yaxis.labels = {
         formatter: function (value) {
-          return value + "%"
+          return (value).toFixed(1) + "%"
         }
       }
       this.downloadData()

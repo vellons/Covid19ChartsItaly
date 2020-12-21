@@ -18,7 +18,11 @@
     mixins: [chartMixins],
     props: {
       height: {default: "100%"},
-      minHeight: {default: "300px"}
+      minHeight: {default: "300px"},
+      showLast30: {
+        type: Boolean,
+        default: false
+      }
     },
     data: () => ({
       chartLoading: true,
@@ -40,6 +44,13 @@
       this.chartOptions = this.getChartAreaOptions("apex-chart-tamponi")
       this.chartOptions.colors = ["#00e2e6", "#ffa547"]
       this.downloadData()
+    },
+    watch: {
+      showLast30: function (show) {
+        let temp = {...this.chartOptions}
+        temp.xaxis.min = show ? new Date().setDate(new Date().getDate() - 30) : undefined
+        this.chartOptions = temp
+      }
     },
     methods: {
       downloadData: function () {

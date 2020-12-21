@@ -16,7 +16,11 @@
     mixins: [chartMixins],
     props: {
       height: {default: "100%"},
-      minHeight: {default: "300px"}
+      minHeight: {default: "300px"},
+      showLast30: {
+        type: Boolean,
+        default: false
+      }
     },
     data: () => ({
       chartLoading: true,
@@ -44,6 +48,13 @@
       this.chartOptions = this.getChartAreaOptions("apex-chart-andamento")
       this.chartOptions.colors = ["#228b22", "#ffa547", "#e60000", "#8a4343"]
       this.downloadData()
+    },
+    watch: {
+      showLast30: function (show) {
+        let temp = {...this.chartOptions}
+        temp.xaxis.min = show ? new Date().setDate(new Date().getDate() - 30) : undefined
+        this.chartOptions = temp
+      }
     },
     methods: {
       downloadData: function () {

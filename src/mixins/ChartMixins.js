@@ -53,7 +53,11 @@ export const chartMixins = {
         },
         xaxis: {
           type: "datetime",
+          min: undefined,
           categories: [] // Categories will be added here
+        },
+        yaxis: {
+          min: 0
         },
         markers: {
           hover: {
@@ -111,6 +115,9 @@ export const chartMixins = {
         xaxis: {
           type: "string",
           categories: [] // Categories will be added here
+        },
+        yaxis: {
+          min: 0
         },
         tooltip: {
           enabled: true,
